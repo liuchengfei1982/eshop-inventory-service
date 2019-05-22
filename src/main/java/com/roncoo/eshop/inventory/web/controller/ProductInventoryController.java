@@ -14,7 +14,8 @@ public class ProductInventoryController {
 
 	@Autowired
 	private ProductInventoryService productInventoryService;
-	
+
+	////http://192.168.56.102:8764/product-inventory/add?value=111&id=1&productId=2
 	@RequestMapping("/add") 
 	@ResponseBody
 	public String add(ProductInventory productInventory) {
@@ -58,6 +59,17 @@ public class ProductInventoryController {
 			return productInventoryService.findById(id);
 		} catch (Exception e) {
 			e.printStackTrace(); 
+		}
+		return new ProductInventory();
+	}
+
+	@RequestMapping("/findByProductId")
+	@ResponseBody
+	public ProductInventory findByProductId(Long productId){
+		try {
+			return productInventoryService.findByProductId(productId);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return new ProductInventory();
 	}
